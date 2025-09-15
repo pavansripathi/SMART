@@ -1,0 +1,5 @@
+venv/
+maria/
+__pycache__/
+*.pyc
+.env
