@@ -48,23 +48,44 @@ Encrypt DB credentials and use least-privilege DB users
 **This is the project structure**
 
 SMART/
+
+
 │
+
 ├── backend/
+
 │   ├── api.py               # FastAPI entrypoint (uvicorn)
+
 │   ├── db.py                # SQLite + SQLAlchemy setup
+
 │   ├── core/
+
 │   │   ├── employees.py     # CRUD logic
+
 │   │   └── main.py          # AI/ML logic placeholder
+
 │   ├── data/
+
 │   │   └── smart.db
+
 │   └── __init__.py
+
 │
+
 ├── streamlit_ui/
+
 │   └── app.py               # Streamlit GUI that imports backend/core directly
+
 │
+
 ├── web_ui/                  # UI part
+
 │   ├── package.json
+
 │   ├── src/
+
 │   └── public/
+
 │
+
 └── README.md
