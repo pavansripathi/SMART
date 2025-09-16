@@ -1,5 +1,4 @@
-venv/
-maria/
+.maria/
 __pycache__/
 *.pyc
 .env
