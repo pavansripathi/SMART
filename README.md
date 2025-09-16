@@ -42,44 +42,29 @@ Audit logs for assignment actions
 Encrypt DB credentials and use least-privilege DB users
 
 
-
 ------------------------------------------------------------------------------
 
 
-
-This is the project structure
-
-
+**This is the project structure**
 
 SMART/
-
 │
-
-├── app.py                 # Streamlit GUI
-
-├── api.py                 # FastAPI backend
-
-├── db.py                  # SQLite + SQLAlchemy setup
-
+├── backend/
+│   ├── api.py               # FastAPI entrypoint (uvicorn)
+│   ├── db.py                # SQLite + SQLAlchemy setup
+│   ├── core/
+│   │   ├── employees.py     # CRUD logic
+│   │   └── main.py          # AI/ML logic placeholder
+│   ├── data/
+│   │   └── smart.db
+│   └── __init__.py
 │
-
-├── core/
-
-│   ├── employees.py       # CRUD logic for employees
-
-│   └── main.py            # Placeholder for future AI features
-
+├── streamlit_ui/
+│   └── app.py               # Streamlit GUI that imports backend/core directly
 │
-
-├── data/
-
-│   └── smart.db           # SQLite database
-
+├── web_ui/                  # UI part
+│   ├── package.json
+│   ├── src/
+│   └── public/
 │
-
 └── README.md
-
-
-
-
-
