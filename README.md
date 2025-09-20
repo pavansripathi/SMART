@@ -41,6 +41,27 @@ Audit logs for assignment actions
 
 Encrypt DB credentials and use least-privilege DB users
 
+**API end points**
+
+To run the API locally you need to run this command - 
+uvicorn backend.api:app --reload
+
+This starts the server at http://127.0.0.1:8000 (default port).
+
+After running this file, you can fetch the details for example in JS
+~~~
+fetch("http://127.0.0.1:8000/employees")
+  .then(res => res.json())
+  .then(data => console.log(data));
+~~~
+
+This will pull all employees data and you can render it in your UI.
+
+For now these are the API end points
+
+* / → health check
+* /employees → all employees
+* /employees/{id} → single employee
 
 ------------------------------------------------------------------------------
 
