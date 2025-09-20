@@ -60,9 +60,13 @@ SMART/
 
 │   ├── core/
 
-│   │   ├── employees.py     # CRUD logic
+│   │   ├── __init__.py
 
-│   │   └── main.py          # AI/ML logic placeholder
+│   │   ├── employees.py         # CRUD logic
+
+│   │   ├── generate_emp_data.py # generate fake employees data
+
+│   │   └── main.py              # AI/ML logic placeholder
 
 │   ├── data/
 
