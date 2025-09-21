@@ -1,5 +1,6 @@
 import sys
 import os
+import numpy as np
 
 db_path = "backend/data/smart.db"
 if os.path.exists(db_path):
@@ -23,6 +24,15 @@ num_of_employees = 1000
 total_emp_data = []
 count = 0
 
+numbers = np.arange(1, 25)
+k = 0.2 # Decay rate, adjust higher for steeper decay
+probabilities = np.exp(-k*numbers)
+probabilities /= probabilities.sum() # Normalize
+
+# Generate dataset of 100 numbers (seed for reproducibility)
+np.random.seed(42)
+experiences_dataset = np.random.choice(numbers, size=1000, p=probabilities)
+
 def generate_email(name):
     # We need to generate unique emails
     count = 0
@@ -44,19 +54,23 @@ def generate_skills(num):
     
     return skills_and_levels
         
-def generate_emp_details(name):
+def generate_emp_details(name, experience=0):
     # generate all the employees details like name, email, skills and competency levels
     emp_details = {}
     email = generate_email(name)
     skills_and_levels = generate_skills(random.randint(3, 6))
+    location = random.choice(["Amarvathi", "Hyderabad", "Bangalore", "Pune", "Ahmedabad"])
     
-    return {"name":name, "email":email, "skills":json.dumps(skills_and_levels)} 
+    return {"name":name, "email":email, "experience":experience, "location":location, "skills":json.dumps(skills_and_levels)} 
 
 def seed_employees(num_of_employees):
+    # seed employees data into the data base
     session = SessionLocal()
-    for _ in range(num_of_employees):
+    
+    for i in range(num_of_employees):
         name = faker.name()
-        total_emp_data.append(generate_emp_details(name))
+        total_emp_data.append(generate_emp_details(name, int(experiences_dataset[i])))
+    
     employee_objects = [Employee(**emp) for emp in total_emp_data]
     session.add_all(employee_objects)
     session.commit()
@@ -64,12 +78,15 @@ def seed_employees(num_of_employees):
     print(f"Inserted {num_of_employees} employee details into the db.")
 
 def print_employees(limit=100):
+    # Used for developing and debugging
     session = SessionLocal()
     employees = session.query(Employee).limit(limit).all()
     for emp in employees:
         print(f"ID: {emp.id}")
         print(f"Name: {emp.name}")
         print(f"Email: {emp.email}")
+        print(f"Experience in years: {emp.experience}")
+        print(f"Location: {emp.location}")
         print(f"Skills: {json.loads(emp.skills)}")  # convert JSON string back to dict
         print("-" * 40)
     session.close()

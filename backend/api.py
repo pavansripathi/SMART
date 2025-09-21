@@ -1,4 +1,4 @@
-# Fast API Backend
+# Fast API Backend, CRUD logic
 from fastapi import FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from backend.db import SessionLocal
