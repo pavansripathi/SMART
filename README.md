@@ -44,6 +44,7 @@ Encrypt DB credentials and use least-privilege DB users
 **API end points**
 
 To run the API locally you need to run this command - 
+
 uvicorn backend.api:app --reload
 
 This starts the server at http://127.0.0.1:8000 (default port).

@@ -24,14 +24,21 @@ num_of_employees = 1000
 total_emp_data = []
 count = 0
 
+# Logic for generating dataset of experiences with decreasing probability from 1 to 25 years
 numbers = np.arange(1, 25)
 k = 0.2 # Decay rate, adjust higher for steeper decay
 probabilities = np.exp(-k*numbers)
 probabilities /= probabilities.sum() # Normalize
+np.random.seed(42) # seed for reproducibility
+experiences_dataset = np.random.choice(numbers, size=num_of_employees, p=probabilities)
 
-# Generate dataset of 100 numbers (seed for reproducibility)
-np.random.seed(42)
-experiences_dataset = np.random.choice(numbers, size=1000, p=probabilities)
+# Same logic for generating random locations based on decreasing probability in the list
+locations = ["Amarvathi", "Hyderabad", "Bangalore", "chennai", "Pune", "Ahmedabad"]
+numbers = np.arange(1, len(locations)+1)
+probabilities = np.exp(-k*numbers)
+probabilities /= probabilities.sum()
+np.random.seed(42) # seed for reproducibility
+locations_dataset = np.random.choice(locations, size=num_of_employees, p=probabilities)
 
 def generate_email(name):
     # We need to generate unique emails
@@ -46,7 +53,7 @@ def generate_email(name):
     return email
 
 def generate_skills(num):
-    # generate skills and competency levels based on input numbers
+    # Generate skills and competency levels based on input numbers
     skills_and_levels = {}
     total_skills = ["python", "CI/CD", "java", "JS", "ML", "AI"]
     for skill in random.sample(total_skills, num):
@@ -54,17 +61,16 @@ def generate_skills(num):
     
     return skills_and_levels
         
-def generate_emp_details(name, experience=0):
-    # generate all the employees details like name, email, skills and competency levels
+def generate_emp_details(name, index=0):
+    # Generate all the employees details like name, email, skills and competency levels
     emp_details = {}
     email = generate_email(name)
     skills_and_levels = generate_skills(random.randint(3, 6))
-    location = random.choice(["Amarvathi", "Hyderabad", "Bangalore", "Pune", "Ahmedabad"])
-    
-    return {"name":name, "email":email, "experience":experience, "location":location, "skills":json.dumps(skills_and_levels)} 
+    location = locations_dataset[index]
+    return {"name":name, "email":email, "experience":index, "location":location, "skills":json.dumps(skills_and_levels)} 
 
 def seed_employees(num_of_employees):
-    # seed employees data into the data base
+    # Seed employees data into the data base
     session = SessionLocal()
     
     for i in range(num_of_employees):
