@@ -11,4 +11,5 @@ class Employee(Base):
     email = Column(String, nullable=False, unique=True)
     experience = Column(Integer, nullable=False)
     location = Column(String, nullable=False)
+    salary = Column(String, nullable=False)
     skills = Column(String, nullable=False) # Storing JSON strings for now
