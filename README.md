@@ -1,232 +1,202 @@
 # ✅ SMART — Skill Mapping & AI-Driven Resource Tracking
-> **Full-Stack + AI + MLOps End-to-End Learning Project**
 
-SMART is an AI-powered Talent Intelligence platform that helps organizations
-**discover, assess, match, and develop talent** using Machine Learning, LLMs, embeddings,
-skill-graphs, and robust MLOps pipelines.
+> **Full-Stack + AI + MLOps End-to-End Real-World Engineering System**
 
-It also empowers **employees** to explore roles,
-measure job fit, identify skill-gaps, and receive AI-driven learning paths.
+SMART is an enterprise-grade AI Talent Intelligence Platform built to learn and master:
 
-This system is built as a **real-world enterprise project** to master:
-- AI/NLP/Embeddings + RAG
-- Full-stack system architecture
-- MLOps lifecycle (data → train → deploy → monitor → retrain)
-- Secure scalable backend engineering
+* ✅ AI/ML + NLP + Embeddings
+* ✅ Real-world MLOps lifecycle
+* ✅ Full-stack engineering & DevOps
+* ✅ Scalable backend + production CI/CD
+* ✅ HR & Employee talent recommendation workflows
 
----
+This is not a toy demo — this is a **serious, production-oriented learning product**.
 
-## 🎯 Objectives
+SMART helps:
 
-| Category | Focus |
-|---|---|
-AI | Resume parsing → embeddings → skill graph → talent scoring → recommendations  
-MLOps | DVC, MLflow, Docker, CI/CD, Monitoring, retraining pipelines  
-Full Stack | FastAPI backend, DB, Auth, UI (Streamlit → React)  
-Security | JWT, RBAC roles, hashing, secret mgmt, audit logs  
-Product | Employer + Employee talent ecosystem  
+* **Employers** find & evaluate talent using AI
+* **Employees** benchmark themselves & get skill-gap insights
+* **Developers (us)** build a real SaaS-like system & master AI engineering
 
 ---
 
-## 🚀 Key Features
+## 🎯 High-Level Objectives
+
+| Category       | Outcome                                                                    |
+| -------------- | -------------------------------------------------------------------------- |
+| AI & ML        | Resume parsing → skill extraction → embeddings → scoring → recommendations |
+| MLOps          | Training → evaluation → deployment → monitoring → retraining pipelines     |
+| Full-Stack     | FastAPI backend, Streamlit/React UI, CLI, DB, Auth                         |
+| DevOps         | Docker, CI/CD, GitHub Actions, environments                                |
+| Security       | JWT, RBAC, hashing, audit logs                                             |
+| Product Vision | Enterprise Talent Intelligence + Employee Career Assistant                 |
+
+---
+
+## 🚀 Key Platform Capabilities
 
 ### ✅ Employer / HR Portal
-- Employee database & skills inventory
-- Resume parsing + automatic skill extraction
-- Semantic talent matching (project → people)
-- Natural language HR chatbot:  
-  *“Find React devs with 4+ yrs in Hyderabad available next 2 weeks”*
-- Candidate ranking + shortlist flow
-- Interview question generator (role-based)
-- Chat with candidate resume (RAG)
-- Bench usage + skill heatmap dashboard
+
+* Employee database & search
+* Resume parsing → skill extraction
+* Talent match scoring (Rule-based & ML)
+* Salary prediction (ML regression)
+* Rank & shortlist candidates
+* Resume RAG chatbot
+* Bench usage & skill heatmaps
+* AI interview question generator
+* Exportable reports
 
 ### ✅ Employee Portal
-- Job match scoring & ranking insights
-- Comparison vs other applicants
-- Skill-gap analysis & learning roadmap
-- Resume bullet generator + ATS optimization
-- AI mock interview assistant (future)
+
+* Upload resume → extract skills
+* Job fit score & ranking insights
+* Skill-gap analysis
+* Personalized learning roadmap
+* Compare vs peer benchmark
+* Resume improvement suggestions (ATS-optimized)
 
 ---
 
-## 🧠 AI Modules
+## 🧠 AI & ML Modules (High-Level)
 
-| Module | Purpose | Tools |
-|---|---|---|
-Resume Extraction | Identify skills, roles, years | spaCy / transformers  
-Embeddings | Vectorize profiles & jobs | sentence-transformers / OpenAI  
-Vector Search | Talent similarity search | FAISS / Qdrant  
-Skill Graph | Skill relationships & hierarchy | NetworkX / Neo4j  
-Match Scoring | Weighted talent-fit engine | Python pipeline  
-RAG Resume Chat | AI answers about candidate profile | LangChain + vector DB  
-Career Path Engine | Predict career trajectory | Embeddings + heuristics  
-Learning Recommender | Suggest skills/courses | LLM + rule engine  
+| Module                           | Purpose                           |
+| -------------------------------- | --------------------------------- |
+| EDA + Data Prep                  | Understand talent/resume data     |
+| Linear Regression                | Salary prediction v1              |
+| Logistic Regression + Tree Model | Talent match scoring v1           |
+| K-Means Clustering               | Skill segmentation                |
+| TF-IDF NLP                       | Resume skills extraction baseline |
+| KNN / Cosine Similarity          | Talent recommendations            |
+| Resume RAG                       | Chat with candidate profiles      |
+| Future: BERT + Vector DB         | Semantic candidate matching       |
+| Future: ANN / LSTM               | Advanced resume modeling          |
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ System Architecture (Top-Level)
 
 ```
-Frontend (Streamlit -> React UI)
+Frontend (Streamlit → React)
         │
         ▼
-FastAPI Backend ── JWT/RBAC ── ML Services
+FastAPI Backend ── Auth ── ML Services ── Vector Search
         │
  ┌──────┴──────────┐
  │                 │
-SQL DB         Vector DB (FAISS/Qdrant)
+SQL DB         Vector DB (Qdrant / FAISS)
  │                 │
-DVC Data      MLflow Models & Registry
+Local + Cloud Storage for Datasets & Models
 ```
 
 ---
 
-## 📦 Tech Stack
+## 📦 Technology Stack
 
-| Layer | Technology |
-|---|---|
-UI | Streamlit (MVP) → React + Tailwind  
-API | FastAPI  
-DB | SQLite (MVP) → PostgreSQL  
-Auth | JWT, bcrypt, RBAC  
-Vector DB | FAISS / Qdrant  
-NLP | spaCy, Transformers  
-LLM | OpenAI / HF + LangChain  
-MLOps | DVC, MLflow, Prefect/Airflow  
-DevOps | Docker, GitHub Actions  
-Monitoring | Grafana, Prometheus, EvidentlyAI  
+| Layer      | Tools                                                       |
+| ---------- | ----------------------------------------------------------- |
+| Frontend   | Streamlit (MVP) → React + Tailwind                          |
+| Backend    | FastAPI + SQLAlchemy                                        |
+| ML         | scikit-learn, sentence-transformers, spaCy                  |
+| Vector DB  | Qdrant / FAISS                                              |
+| Auth       | JWT + bcrypt + RBAC                                         |
+| DB         | SQLite → PostgreSQL                                         |
+| DevOps     | Docker, GitHub Actions                                      |
+| MLOps      | Model artifacts, retraining workflows (future MLflow / DVC) |
+| Monitoring | Prometheus, Grafana, EvidentlyAI (later phases)             |
 
 ---
 
-## 📂 Folder Structure
+## 📂 Repository Structure (High-Level)
 
 ```
 SMART/
-├── backend/
-│   ├── api.py                # FastAPI server
-│   ├── auth/                 # JWT, RBAC, hashing
-│   ├── core/                 # business logic (CRUD + matching)
-│   ├── ml/                   # embedding + models
-│   ├── rag/                  # chat with resumes
-│   ├── data/                 # database + datasets
-│   ├── tests/                # unit tests
-│   └── Dockerfile
-│
-├── streamlit_ui/
-│   └── app.py                # MVP UI
-│
-└── web_ui/ (future React client)
+├── backend/           # FastAPI backend & ML services
+├── cli/               # SMART CLI utilities
+├── data/              # Raw datasets & seeds
+├── docs/              # Deep technical & learning docs
+├── ui/                # Streamlit → React Frontend
+└── .github/workflows/ # CI/CD pipelines
 ```
 
 ---
 
-## 🧪 API Endpoints (MVP)
+## 🧪 Quality & Testing
 
-### Base URL
-```
-http://127.0.0.1:8000
-```
-
-| Method | Endpoint | Function |
-|---|---|---|
-GET | `/` | Health check |
-POST | `/auth/login` | JWT login |
-GET | `/employees` | List employees |
-GET | `/employees/{id}` | Employee details |
-POST | `/match` | Match candidate to job role |
-POST | `/resume/extract` | Parse skills from resume |
-POST | `/query/hr-agent` | HR chatbot |
+* ✅ Unit tests (pytest)
+* ✅ Linting (ruff, black, isort)
+* ✅ GitHub Actions CI
+* ✅ Docker parity dev environment
+* 🔜 UI testing (Playwright/Selenium)
+* 🔜 ML evaluation tests & performance checks
 
 ---
 
-## 📊 Talent Scoring Formula
+## 🔐 Security Principles
 
-```
-TalentFit Score =
-0.45 * Skill Match +
-0.25 * Experience +
-0.15 * Availability +
-0.10 * Location/Domain Fit +
-0.05 * Behavioral/Interview Score (future)
-```
+* JWT + RBAC roles
+* Encrypted secrets via `.env`
+* Audit logging for sensitive events
+* Minimal data retention & PII safety
 
 ---
 
-## 🧬 MLOps Lifecycle
+## 🚦 Development Roadmap Snapshot
 
-| Stage | Tool | What it Covers |
-|---|---|---|
-Data versioning | DVC | Raw resumes, profiles, JDs, labels  
-Experiment tracking | MLflow / W&B | Metrics, params, artifact storage  
-Model registry | MLflow | Versioning, stage transitions (Staging/Prod)  
-Feature store | Parquet / Redis (future) | Reusable features for inference  
-Orchestration | Prefect / Airflow | ETL → Train → Evaluate → Deploy  
-Containerization | Docker | Immutable deployments (API + workers)  
-CI/CD | GitHub Actions | Lint, test, build, push images, deploy  
-Monitoring | EvidentlyAI + Grafana | Data drift, performance, latency  
-Auto-retrain | Cron / drift triggers | Re-train when drift/perf degrades  
+| Phase    | Focus                                 |
+| -------- | ------------------------------------- |
+| Phase 0  | ✅ Repo, CI, Docker, CLI, health check |
+| Phase 1  | DB + Seed data + Read API             |
+| Phase 2  | EDA + feature engineering             |
+| Phase 3  | CLI matching (rule-based)             |
+| Phase 4  | Salary ML model & API                 |
+| Phase 5  | ML-based match engine                 |
+| Phase 6  | Clustering engine                     |
+| Phase 7  | Resume skill extraction NLP           |
+| Phase 8  | Recommendation engine                 |
+| Phase 9  | Full HR UI                            |
+| Phase 10 | Auth + RBAC                           |
+| Phase 11 | Resume RAG chat                       |
+| Phase 12 | Analytics dashboards                  |
+| Phase 13 | Employee portal                       |
+| Phase 14 | Monitoring & drift                    |
+| Phase 15 | CI/CD deployment pipeline             |
+
+🔁 **Version 1.1.0 & 1.2.0 add advanced ML, embeddings, deep learning & full MLOps**
+
+> Full phase roadmap lives in `docs/phase_wise_plan.md`
 
 ---
 
-## 🔐 Security
+## ▶️ Quick Start
 
-- bcrypt password hashing
-- JWT access + refresh tokens
-- RBAC (Admin / HR / Manager / Employee)
-- `.env` secret config and least-privilege DB roles
-- PII minimization (store only necessary fields)
-- Audit logs for assignment & search actions
-
----
-
-## ▶️ Running Locally
-
-### 1) Install
 ```bash
-pip install -r requirements.txt
-```
+# Create venv
+python -m venv .venv
 
-### 2) Run Backend
-```bash
-uvicorn backend.api:app --reload
-```
+# Activate
+source .venv/bin/activate   # Linux/Mac
+.venv\Scripts\activate      # Windows
 
-### 3) Run UI
-```bash
-streamlit run streamlit_ui/app.py
+# Install deps
+pip install -r backend/requirements.txt
+
+# Run API
+uvicorn backend.app:app --reload
+
+# Run UI (MVP)
+streamlit run ui/app.py
 ```
 
 ---
 
-## 🧭 Development Roadmap
+## 🥅 Final Vision
 
-| Stage | Status |
-|---|---|
-Backend MVP + API | ✅  
-Streamlit UI | ✅  
-Resume parsing + embeddings | 🚧  
-Semantic matching engine | 🚧  
-LLM resume assistant | 🔜  
-Vector DB + MLflow + DVC | 🔜  
-React UI | 🔜  
-CI/CD + monitoring | 🎯  
+Build a real AI Talent Intelligence SaaS:
 
----
+* Real-world AI
+* Real-world DevOps
+* Real-world MLOps
+* Real-world UI/UX
 
-## 🤝 Contributing
-This is a learning-focused, production-style project.  
-Pull requests, architecture suggestions & feedback welcome!
-
----
-
-## 🥅 Final Goal
-Build a **real-world enterprise AI system** & master:
-
-✔ Software engineering  
-✔ AI systems & embeddings  
-✔ MLOps & deployment  
-✔ Database + Auth + RBAC  
-✔ UI + APIs + DevOps pipelines
-
-Not just "build an app", but learn how companies build **AI products at scale**.
+**Not just learning — building professional software.**
