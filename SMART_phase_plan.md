@@ -1,6 +1,6 @@
 # SMART Project Roadmap — Detailed Phases (v1.0.0)
 
-This plan includes **all original features** + newly added ML modules, automated testing strategies, MLOps lifecycle alignment, and full production scope.
+This plan includes **all original features** + ML modules, automated testing strategies, MLOps alignment, DB clarity, ATS scoring, and security practices.
 
 > Building SMART like a real enterprise Talent Intelligence Platform — not a toy.
 
@@ -11,30 +11,31 @@ This plan includes **all original features** + newly added ML modules, automated
 **Goal:** Establish foundation + CI + DevOps hygiene
 
 ### Tasks
-
-* Create monorepo structure
-* Initialize Git repo & branch strategy
-* Add FastAPI skeleton with `/health` endpoint
-* CLI bootstrap (`smart` command placeholder)
-* Testing: pytest installed + basic smoke test
-* Code quality tooling:
-
-  * black, ruff, isort, pre‑commit hooks
-* Dockerfile + docker‑compose
-* GitHub Actions CI (lint + tests on push/PR)
+- Create monorepo structure
+- Initialize Git repo & branch strategy
+- Add FastAPI skeleton with `/health` endpoint
+- CLI bootstrap (`smart` command placeholder)
+- pytest installed + basic smoke test
+- Code quality:
+  - black, ruff, isort, pre-commit hooks
+- Dockerfile + docker-compose
+- GitHub Actions CI (lint + tests)
+- `.env` config + Pydantic settings module
 
 ### Performance / Quality Metrics
+- ✅ CI must pass for every commit
+- ✅ Pre-commit auto-format enforced
+- ✅ Lint score: `ruff check .` clean
+- ✅ Test coverage: smoke tests enabled
 
-* ✅ CI must pass for every commit
-* ✅ Pre‑commit auto‑format enforced
-* ✅ Lint score: `ruff check .` clean
-* ✅ Test coverage: basic (smoke only)
+### DB & MLOps notes
+- Postgres + SQLite dev fallback (Docker ready)
+- Model folder structure + artifact dir initialized
 
 ### Output
-
-* Running backend & CLI
-* CI pipelines green
-* Dev environment reproducibility ensured
+- Working backend & CLI
+- CI pipelines green
+- Reproducible dev environment
 
 ---
 
@@ -43,26 +44,23 @@ This plan includes **all original features** + newly added ML modules, automated
 **Goal:** Data design + first working endpoints
 
 ### Tasks
-
-* DB schema design (employees, skills, mapping table)
-* Alembic migrations setup
-* Seed data in CSV/XLSX + loader
-* API Endpoints:
-
-  * `GET /employees`
-  * `GET /employees/{id}`
-* Add dataclasses / Pydantic models
-* Unit tests for DAO + endpoints
+- PostgreSQL schema (employees, skills, junction table)
+- SQLite fallback for local dev
+- Alembic migrations setup
+- Seed data from CSV/XLSX
+- API Endpoints:
+  - `GET /employees`
+  - `GET /employees/{id}`
+- Pydantic models
+- Unit tests for DB + API
 
 ### Metrics
-
-* ✅ Test coverage > 50%
-* ✅ DB migrations successful end‑to‑end
-* ✅ Seed load reproducible
+- ✅ Test coverage > 50%
+- ✅ DB migrations consistent
+- ✅ Seed process reproducible
 
 ### Output
-
-* CRUD foundation for ML features
+- CRUD foundation for ML features
 
 ---
 
@@ -71,219 +69,178 @@ This plan includes **all original features** + newly added ML modules, automated
 **Goal:** Understand data and prep for ML
 
 ### Tasks
-
-* Data profiling (distribution, variance, missing values)
-* Outlier detection
-* Encoding: One‑Hot / Label encoding
-* Scaling for numeric features
-* Feature store structure
-* Notebook for EDA
+- EDA notebook
+- Data cleaning + missing value handling
+- Outliers & scaling
+- One-hot / label encoding
+- Feature pipeline utilities
+- Store intermediate data versions
 
 ### Metrics
-
-* ✅ EDA report documented
-* ✅ Cleaned dataset ready
-* ✅ Feature pipeline functions created
+- ✅ EDA documented
+- ✅ Feature functions created
 
 ### Output
-
-* ML‑ready data pipeline
+- ML-ready data pipeline
 
 ---
 
-## 💻 Phase 3 — CLI MVP (Rule‑Based Matching)
+## 💻 Phase 3 — CLI MVP (Rule-Based Matching)
 
 **Goal:** Offline matching baseline
 
 ### Tasks
-
-* CLI: `smart match --skills ... --top-k X`
-* Rule‑based score function
-* Table/CSV output
-* Unit tests
+- CLI command: `smart match --skills ... --top-k`
+- Rule-based scoring formula
+- CSV + Table output
+- Local config for weights
+- CLI tests
 
 ### Metrics
-
-* ✅ CLI user experience smooth
-* ✅ Confident baseline for ML comparison
+- ✅ CLI UX smooth
+- ✅ Baseline ready for ML comparison
 
 ### Output
-
-* First working matching system
+- Rule-based matching working in CLI
 
 ---
 
 ## 🤖 Phase 4 — Salary Prediction Model (Regression v1)
 
-**Goal:** Baseline model & deployment
+**Goal:** Train & serve first ML model
 
 ### Tasks
-
-* Split train/test
-* Train Linear Regression model
-* Evaluate: MAE, MSE, RMSE, R²
-* Save trained model artifact
-* FastAPI route: `POST /salary/predict`
-* Unit test on model input/output
+- Train Linear Regression model
+- MAE, RMSE, R² eval
+- Save model artifact
+- `/salary/predict`
+- Unit tests for inference
+- Logging inference performance
 
 ### Metrics
-
-* RMSE threshold defined
-* Model inference <100ms
-* Test coverage >65%
+- RMSE threshold defined
+- Inference <100ms
+- >65% test coverage on model inputs
 
 ### Output
-
-* Salary predictor v1 deployed
+- Salary predictor v1 served via API
 
 ---
 
-## 🎯 Phase 5 — ML‑Based Skill Match (Classification v1)
+## 🎯 Phase 5 — ML-Based Skill Match (Classification v1)
 
-**Goal:** Replace rule logic with simple ML classifier
+**Goal:** Replace rule logic with ML baseline
 
 ### Tasks
-
-* Train Logistic Regression
-* Compare with Decision Tree
-* Metrics: Precision, Recall, F1
-* Explainability (Tree viz)
-* Endpoint: `POST /match/ml`
-* Config flag: rule | ml
-* Tests for ML output & scoring
+- Logistic Regression baseline
+- Decision Tree explainability
+- Precision, Recall, F1, Confusion matrix
+- `/match?mode=ml`
+- Test ML output consistency
 
 ### Metrics
-
-* F1 > rule‑based baseline
-* Explainable predictions
+- F1 > rule-based baseline
+- Explainability visual access
 
 ### Output
-
-* ML match engine v1
+- ML match engine v1
 
 ---
 
 ## 🧩 Phase 6 — Skill Clustering Engine
 
-**Goal:** Group similar employees
+**Goal:** Group similar talent profiles
 
 ### Tasks
-
-* K‑Means clustering
-* Silhouette score baseline
-* Visual output saved to /plots
-* Endpoint: `GET /clusters`
-
-### Metrics
-
-* Silhouette score tracked
+- K-Means clustering
+- Silhouette score
+- Visualization saved to `/plots`
+- `GET /clusters`
 
 ### Output
-
-* Employee skill clusters
+- Skill clusters visible in UI later
 
 ---
 
 ## 📝 Phase 7 — Resume Skill Extraction (NLP v1)
 
-**Goal:** Extract skills from CV text
+**Goal:** Extract skills from raw text
 
 ### Tasks
-
-* TF‑IDF vectorization
-* Tokenization + stopwords + lemmatization
-* Endpoint: `POST /resume/skills`
-* Test text extraction
-
-### Metrics
-
-* Extraction accuracy baseline documented
+- Tokenization + stopwords + lemmatization
+- TF-IDF baseline
+- `/resume/skills`
+- Unit tests for text parsing
 
 ### Output
-
-* Basic resume parser
+- Basic resume parsing pipeline
 
 ---
 
 ## 🔍 Phase 8 — Recommendation Engine
 
-**Goal:** Find similar employees or jobs
+**Goal:** Recommend employees & jobs
 
 ### Tasks
-
-* KNN / cosine similarity
-* `GET /recommend/employees`, `/jobs`
-* Write evaluation notebook
-
-### Metrics
-
-* Response <150ms
+- KNN / cosine similarity
+- `/recommend/employees`
+- `/recommend/jobs`
+- Evaluation notebook
 
 ### Output
-
-* Recommender v1
+- Talent recommendation v1
 
 ---
 
 ## 🌐 Phase 9 — HR Console UI
 
-**Goal:** Full web UI for HR users
+**Goal:** Full HR interface
 
-### Tasks
+### Pages
+- Login page
+- Employee browser
+- Salary predictor
+- ML matcher
+- Skill clusters
+- Resume parser
+- Recommendations
 
-* Web UI (Streamlit or React)
-* Pages:
-
-  * Login
-  * Employee explorer
-  * Salary predictor
-  * Match engine
-  * Clusters
-  * Resume parser
-  * Recommendations
-* UI tests: Selenium/Playwright
-
-### Metrics
-
-* UI load <2s
-* Selenium smoke suite passes
+### Testing
+- ✅ UI tests (Playwright/Selenium)
+- ✅ API integration tests
 
 ### Output
-
-* ✅ Full HR user interface
+- HR platform UI operational
 
 ---
 
 ## 🔐 Phase 10 — Auth + RBAC
 
-**Goal:** Security and compliance
+**Goal:** Enterprise-grade access control
 
 ### Tasks
-
-* JWT auth
-* User roles (Admin/HR/Manager)
-* Audit logs
-* Protected endpoints
+- JWT auth
+- RBAC roles (Admin/HR/Manager)
+- **Audit logs for access + searches**
+- Rate limits on sensitive endpoints
 
 ### Output
-
-* Secure platform access
+- Secure multi-role platform
 
 ---
 
 ## 💬 Phase 11 — Resume RAG Chat
 
-**Goal:** Chat with candidate data
+**Goal:** Conversational talent search
 
 ### Tasks
-
-* Embed resume chunks
-* Retrieval + prompt chain
-* Endpoint + UI chat
+- Embed resume chunks
+- Retrieval chain
+- `/resume/chat`
+- UI chat widget
 
 ### Output
-
-* Interactive resume chat
+- RAG-powered resume Q&A
 
 ---
 
@@ -291,69 +248,67 @@ This plan includes **all original features** + newly added ML modules, automated
 
 **Goal:** HR dashboards
 
-### Tasks
-
-* Skill heatmaps
-* Salary bands
-* Top skills gaps
-* Model accuracy dashboards
+### Charts
+- Skill heatmaps
+- Salary ranges
+- Hiring funnel stats
+- Model performance charts
 
 ### Output
-
-* Insight UI pages
+- Analytics UI pages
 
 ---
 
 ## 👤 Phase 13 — Employee Portal
 
-**Goal:** Candidate self‑service portal
+**Goal:** Empower employees
 
 ### Features
-
-* Upload resume → skills
-* Skill gap & suggestions
-* Compare with job benchmarks
+- Upload resume → skills
+- Job match score
+- Peer comparison (privacy safe)
+- **ATS optimization score**
+- Skill-gap suggestions
+- Learning pathways
 
 ### Output
-
-* Employee‑facing UI
+- Employee portal online
 
 ---
 
 ## 🛰️ Phase 14 — Monitoring & Drift
 
-**Goal:** Observability + ML drift detection
+**Goal:** System & model reliability
 
 ### Tasks
-
-* Prometheus + Grafana
-* EvidentlyAI
-* Alerts on drift
+- Prometheus + Grafana dashboards
+- EvidentlyAI drift checks
+- Alerts on drift or degraded accuracy
 
 ### Output
-
-* ML monitoring pipeline
+- Real ML observability
 
 ---
 
-## 🚚 Phase 15 — CI/CD Release & Deployment
+## 🚚 Phase 15 — CI/CD & Deployment
 
-**Goal:** Auto deploy to cloud
+**Goal:** Production deployment pipeline
 
 ### Tasks
-
-* Multi‑stage Docker build
-* GitHub Actions release
-* Version tagging
-* Blue‑green / rolling deploys
+- Multi-stage Docker builds
+- GitHub Actions deploy
+- Version tags + release notes
+- Blue-green deployment
+- Rollback strategy
 
 ### Output
-
-* Auto build + deploy on merge to main
+- Continuous delivery to cloud
 
 ---
 
-> **End result:** A real production Talent Intelligence System with ML, RAG, UI, security, CI/CD, and monitoring.
+# ✅ End of v1.0.0 (Core System Delivered)
+
+---
 
 > **End of version 1.0.0** In the later versions we'll deliver more advanced features and improvements.
 
@@ -433,6 +388,12 @@ Deep learning, semantic matching, vector search, production MLOps.
 - Canary deployments
 - Auto rollback strategy
 - Latency testing for ML inference
+
+**Plus explicit items added:**
+- ✅ Qdrant / pgvector integration
+- ✅ Career Path Engine (graph inference)
+- ✅ Optional Neo4j skill graph
+- ✅ MLflow registry + retraining pipeline
 
 ---
 
